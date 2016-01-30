@@ -1,0 +1,7 @@
+puts "If you've been good? Answer y/n: "
+answer = gets.chomp.downcase
+
+while (answer == "n")
+	puts "I love you anyway."
+	answer = gets.chomp.downcase
+end
