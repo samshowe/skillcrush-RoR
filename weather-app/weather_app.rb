@@ -1,4 +1,5 @@
 require 'weatherboy'
+require 'date'
 
 puts "To find out the weather in your area enter your zipcode"
 location = gets.chomp.to_i
@@ -27,9 +28,18 @@ end
 def forecast(location)
 	weatherboy = Weatherboy.new(location)
 	puts "The weather for the next 5 days will be: "
+	today = Date.today
 	for day in 0..4
 		forecast_for_day = weatherboy.forecasts[day]
-		puts forecast_for_day.low_f + "/" + forecast_for_day.high_f + "   " + forecast_for_day.conditions
+		currentDay = today + day
+		dayName = currentDay.strftime("%a");
+		if day == 0
+			dayName = "Today"
+		end
+		if day == 1
+			dayName = "Tomorrow"
+		end
+		puts dayName + " " + forecast_for_day.low_f + "/" + forecast_for_day.high_f + "   " + forecast_for_day.conditions
 	end
 end
 
